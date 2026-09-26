@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Keenetic Routing Rule Switch",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Массовое изменение параметров DNS-маршрутов Keenetic",
 
     "icons": {

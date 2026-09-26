@@ -18,6 +18,12 @@
             : "Нет";
     }
 
+    function normalizeText(value) {
+        return String(value ?? "")
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
     function getSelectedRouteRows() {
         const table =
             document.querySelector(
@@ -141,16 +147,24 @@
         }
 
         const displayedGateway =
-            cells[3]?.textContent?.trim() ?? "";
+            normalizeText(
+                cells[3]?.textContent
+            );
 
         const displayedInterface =
-            cells[4]?.textContent?.trim() ?? "";
+            normalizeText(
+                cells[4]?.textContent
+            );
 
         const displayedAuto =
-            cells[5]?.textContent?.trim() ?? "";
+            normalizeText(
+                cells[5]?.textContent
+            );
 
         const displayedReject =
-            cells[6]?.textContent?.trim() ?? "";
+            normalizeText(
+                cells[6]?.textContent
+            );
 
         const interfaceInfo =
             interfaces.find(
@@ -159,12 +173,16 @@
             );
 
         const expectedInterface =
-            interfaceInfo?.name ??
-            route.interface ??
-            "Любой";
+            normalizeText(
+                interfaceInfo?.name ??
+                route.interface ??
+                "Любой"
+            );
 
         const expectedGateway =
-            route.gateway ?? "";
+            normalizeText(
+                route.gateway
+            );
 
         if (
             displayedGateway !==
@@ -189,7 +207,7 @@
         if (
             displayedAuto &&
             displayedAuto !==
-                booleanText(route.auto)
+            booleanText(route.auto)
         ) {
             throw new Error(
                 `Не совпадает auto маршрута ${route.index}`
@@ -199,7 +217,7 @@
         if (
             displayedReject &&
             displayedReject !==
-                booleanText(route.reject)
+            booleanText(route.reject)
         ) {
             throw new Error(
                 `Не совпадает reject маршрута ${route.index}`

@@ -123,9 +123,11 @@
                 typeof id === "string"
             ) {
                 const name =
-                    value.description ||
-                    value.label ||
-                    id;
+                    String(
+                        value.description ||
+                        value.label ||
+                        id
+                    ).trim();
 
                 interfaces.set(
                     id,
@@ -315,11 +317,11 @@
         for (
             const selectedRow
             of selected
-        ) {
+            ) {
             const route =
                 routes[
                     selectedRow.index
-                ];
+                    ];
 
             if (!route) {
                 throw new Error(
@@ -355,7 +357,7 @@
 
             const updatedRoute = {
                 group:
-                    route.group,
+                route.group,
 
                 gateway:
                     route.gateway ?? "",
@@ -373,7 +375,7 @@
                         ),
 
                 index:
-                    route.index
+                route.index
             };
 
             if (
@@ -411,7 +413,7 @@
             commands.push({
                 "dns-proxy": {
                     route:
-                        updatedRoute
+                    updatedRoute
                 }
             });
         }
